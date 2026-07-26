@@ -1,3 +1,35 @@
-<!doctype html><html lang="th"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><meta name="theme-color" content="#14291f"><title>Buddhist Live</title><link rel="stylesheet" href="./live.css"></head><body>
-<main id="stage" class="scene-temple camera-wide"><div class="sky layer"></div><div class="sun"></div><div class="mountains layer"></div><div class="temple layer"><div class="roof"></div><div class="hall"></div></div><div class="floor layer"></div><div id="characters"></div><div id="effects"></div><div class="front layer"></div><div class="mist layer"></div><div id="subtitle"></div><div class="brand">พุทธ • LIVE</div></main>
-<button id="unlock"><span>♬</span><b>แตะเพื่อเริ่มรับฟัง</b><small>เปิดระบบเสียงสำหรับการถ่ายทอดสด</small></button><audio id="audio" playsinline preload="metadata"></audio><script src="/config.js"></script><script type="module" src="./live.js"></script></body></html>
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#0b211c">
+  <title>Buddhist Live</title>
+  <link rel="stylesheet" href="/live/live.css">
+</head>
+<body>
+  <main id="stage" class="scene-temple camera-wide">
+    <div class="sky layer"></div>
+    <div class="sun"></div>
+    <div class="mountains layer"></div>
+    <div class="temple layer"><div class="roof"></div><div class="hall"></div></div>
+    <div class="floor layer"></div>
+    <div id="characters"></div>
+    <div id="effects"></div>
+    <div class="front layer"></div>
+    <div class="mist layer"></div>
+    <div class="live-header">
+      <div class="brand"><span class="brand-mark">☸</span><span>พุทธ LIVE</span></div>
+      <span class="live-badge"><i></i> LIVE</span>
+    </div>
+    <div id="subtitle"></div>
+  </main>
+  <button id="unlock">
+    <span class="sound-icon">▶</span>
+    <span class="unlock-copy"><b>เริ่มรับฟังบทสวด</b><small>แตะเพื่อเปิดเสียงถ่ายทอดสด</small></span>
+  </button>
+  <audio id="audio" playsinline preload="metadata"></audio>
+  <script src="/config.js"></script>
+  <script type="module" src="/live/live.js"></script>
+</body>
+</html>
