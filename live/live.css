@@ -207,6 +207,17 @@ body {
   justify-content: space-between;
   pointer-events: none;
 }
+.live-meta { display: flex; align-items: center; gap: 7px; }
+.live-meta > span:first-child {
+  padding: 7px 9px;
+  border: 1px solid rgba(255,255,255,.13);
+  border-radius: 6px;
+  background: rgba(18,26,22,.58);
+  color: #f4dfaa;
+  font-size: 9px;
+  font-weight: 800;
+  backdrop-filter: blur(10px);
+}
 .brand {
   display: flex;
   align-items: center;
@@ -251,13 +262,25 @@ body {
   animation: pulse 1.8s ease-in-out infinite;
 }
 
+#seatMarkers, #characters { position: absolute; inset: 0; }
+.seat-marker {
+  position: absolute;
+  width: clamp(48px, 12vmin, 136px);
+  height: clamp(18px, 4.5vmin, 52px);
+  translate: -50% -50%;
+  transform-origin: center;
+  border: 1px solid rgba(224, 190, 115, .34);
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(90, 65, 44, .52), rgba(27, 54, 43, .72) 62%, transparent 68%);
+  box-shadow: inset 0 3px 8px rgba(0,0,0,.35), 0 3px 6px rgba(0,0,0,.22);
+}
 .character {
   position: absolute;
   width: clamp(52px, 13vmin, 145px);
   height: clamp(74px, 18vmin, 205px);
   translate: -50% -100%;
   transform-origin: bottom;
-  transition: left 1.4s ease, top 1.4s ease, transform .7s ease;
+  transition: left 1.4s ease, top 1.4s ease, transform .7s ease, opacity .45s ease, filter .45s ease;
   filter: drop-shadow(0 9px 5px rgba(0,0,0,.5));
 }
 .character::before {
@@ -268,16 +291,17 @@ body {
   bottom: -5%;
   width: 148%;
   height: 27%;
-  border: 1px solid rgba(119, 239, 220, .72);
+  border: 1px solid rgba(232, 202, 132, .65);
   border-radius: 50%;
   background:
-    radial-gradient(ellipse, rgba(80, 231, 212, .48), rgba(25, 104, 91, .44) 48%, rgba(3, 27, 22, .82) 70%);
+    radial-gradient(ellipse, rgba(213, 170, 91, .48), rgba(94, 66, 42, .5) 48%, rgba(3, 27, 22, .82) 70%);
   box-shadow:
-    0 0 12px rgba(83, 239, 218, .72),
-    0 0 30px rgba(65, 205, 190, .35);
+    0 0 12px rgba(236, 204, 128, .48),
+    0 0 30px rgba(210, 167, 86, .22);
   transform: perspective(180px) rotateX(58deg);
   animation: platformGlow 2.8s ease-in-out infinite;
 }
+.person { position: absolute; inset: 0; transform-origin: 50% 88%; }
 .character .head {
   position: absolute;
   left: 32%;
@@ -285,19 +309,90 @@ body {
   width: 35%;
   aspect-ratio: 1;
   border-radius: 50%;
-  background: #d7a774;
-  box-shadow: inset -6px -2px #a77955, 0 0 0 2px rgba(255,220,170,.12);
+  background: var(--skin, #d7a774);
+  box-shadow: inset -6px -2px rgba(112,69,43,.32), 0 0 0 2px rgba(255,220,170,.12);
 }
+.character .hair {
+  position: absolute;
+  inset: -5% -4% 48%;
+  border-radius: 55% 55% 28% 28%;
+  background: var(--hair, #2e211d);
+}
+.character.style-1 .hair::after,
+.character.style-3 .hair::after,
+.character.style-5 .hair::after,
+.character.style-7 .hair::after {
+  content: "";
+  position: absolute;
+  right: -30%;
+  top: 2%;
+  width: 42%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: inherit;
+}
+.ear { position: absolute; top: 46%; width: 14%; aspect-ratio: 1; border-radius: 50%; background: var(--skin, #d7a774); }
+.ear.left { left: -7%; }
+.ear.right { right: -7%; }
 .character .body {
   position: absolute;
   inset: 25% 8% 0;
-  border-radius: 50% 50% 20% 20%;
-  background: linear-gradient(100deg, #6e2c20, #d1813d 48%, #7f3420);
+  border-radius: 48% 48% 22% 22%;
+  background: linear-gradient(105deg, color-mix(in srgb, var(--shirt) 65%, #111), var(--shirt) 48%, color-mix(in srgb, var(--shirt) 70%, #000));
   clip-path: polygon(22% 0,78% 0,100% 100%,0 100%);
 }
-.character.meditate .body { animation: breathe 3s ease-in-out infinite; }
-.character.bow { animation: bow 1.8s ease-in-out; }
-.character.pray .body::after { content: "🙏"; position: absolute; left: 35%; top: 5%; font-size: clamp(18px,4vmin,46px); }
+.collar {
+  position: absolute;
+  left: 36%;
+  top: 0;
+  width: 28%;
+  height: 17%;
+  border: 2px solid rgba(255,255,255,.42);
+  border-top: 0;
+  border-radius: 0 0 50% 50%;
+}
+.hands {
+  position: absolute;
+  left: 39%;
+  top: 28%;
+  width: 22%;
+  height: 23%;
+  border-radius: 50% 50% 35% 35%;
+  background: var(--skin, #d7a774);
+  box-shadow: -4px 2px 0 color-mix(in srgb, var(--skin, #d7a774) 78%, #56351f);
+}
+.person-name {
+  position: absolute;
+  left: 50%;
+  bottom: -21%;
+  max-width: 150%;
+  translate: -50%;
+  overflow: hidden;
+  padding: 3px 6px;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 99px;
+  background: rgba(7,25,20,.72);
+  color: #fff2cf;
+  font-size: clamp(7px, 1.5vmin, 13px);
+  line-height: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  opacity: .84;
+}
+.style-0 { --shirt: #5f8391; --hair: #32231e; --skin: #d7a774; }
+.style-1 { --shirt: #a66f76; --hair: #241c1a; --skin: #efbd8d; }
+.style-2 { --shirt: #6e8b64; --hair: #161719; --skin: #b97f56; }
+.style-3 { --shirt: #8a7295; --hair: #403026; --skin: #deb084; }
+.style-4 { --shirt: #b08757; --hair: #202020; --skin: #d49b6c; }
+.style-5 { --shirt: #557a76; --hair: #38251e; --skin: #f0c39d; }
+.style-6 { --shirt: #7d6b58; --hair: #161616; --skin: #a96f49; }
+.style-7 { --shirt: #9b687f; --hair: #33251f; --skin: #e0a675; }
+.character.meditate .person { animation: breathe 3s ease-in-out infinite; }
+.character.bow .person { animation: bow 1.8s ease-in-out; }
+.character.pray .hands { top: 18%; height: 32%; transform: rotate(4deg); }
+.character.idle .hands { top: 44%; }
+.character.enter { opacity: 0; filter: blur(7px) drop-shadow(0 0 28px #f6d57e); }
+.character.leave { opacity: 0; transform: translateY(-15%) scale(.65) !important; }
 .aura { border-radius: 50%; box-shadow: 0 0 35px 15px rgba(255,216,120,.6); }
 .gift { position: absolute; z-index: 130; left: 50%; top: 38%; translate: -50%; font-size: clamp(50px,12vmin,135px); animation: gift 4s ease both; }
 .candle { position: absolute; bottom: 12%; font-size: clamp(26px,5vmin,60px); animation: breathe 1.2s infinite; }
@@ -345,6 +440,7 @@ body {
 .camera-focus #world { transform: translateY(-4%) scale(1.24); }
 .camera-top #world { transform: translateY(6%) scale(1.1); }
 .auto-camera #world { animation: cameraOrbit 26s ease-in-out infinite; }
+.spawn-focus #world { animation: focusSeat 4.8s ease both !important; }
 .scene-forest .sky { background: linear-gradient(#092d25, #4c7852); }
 .scene-forest .temple { opacity: .22; }
 .scene-night .sky { background: radial-gradient(circle at 75% 15%,#f4e7bd 0 5%,transparent 5.5%),linear-gradient(#07142b,#263a50); }
@@ -382,6 +478,11 @@ body {
   40% { transform: translate3d(-2%, -4%, 0) scale(1.2) rotate(.25deg); }
   60% { transform: translate3d(-6%, -1%, 0) scale(1.13) rotate(.5deg); }
   80% { transform: translate3d(2%, 2%, 0) scale(1.07) rotate(-.2deg); }
+}
+@keyframes focusSeat {
+  0% { transform: translate3d(0,0,0) scale(1.06); }
+  22%, 72% { transform: translate3d(var(--focus-x), var(--focus-y), 0) scale(1.34); }
+  100% { transform: translate3d(0,0,0) scale(1.06); }
 }
 @keyframes sweep {
   from { transform: rotate(-8deg); opacity: .2; }

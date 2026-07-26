@@ -1,11 +1,19 @@
 {
   "name": "buddhist-live-scene",
   "private": true,
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "module",
   "scripts": {
     "dev": "node scripts/serve.js",
     "build": "node scripts/build.js",
-    "test": "node --test"
+    "test": "node --test",
+    "connector": "node connector/index.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.57.4",
+    "tiktok-live-connector": "2.4.3"
   }
 }

@@ -41,7 +41,15 @@ export const realtime = {
     const message = { commandId: crypto.randomUUID(), roomId: ROOM_ID, timestamp: Date.now(), source, state: next };
     receive(message); localStorage.setItem(key, JSON.stringify(next)); bus?.postMessage(message);
     if (channel) await channel.send({ type: 'broadcast', event: 'command', payload: message });
-    if (supabase && source !== 'live') await supabase.from('room_state').upsert({ room_id: ROOM_ID, ...next });
+    if (supabase && source !== 'live') {
+      const writable = { ...next };
+      delete writable.bridge_url;
+      delete writable.connector_status;
+      delete writable.tiktok_username;
+      delete writable.live_session_id;
+      delete writable.last_event_at;
+      await supabase.from('room_state').upsert({ room_id: ROOM_ID, ...writable });
+    }
   },
   reset() { return this.update(defaultState); }
 };

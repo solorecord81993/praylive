@@ -1,4 +1,4 @@
-export const INITIAL_CHARACTERS = 1;
+export const INITIAL_CHARACTERS = 0;
 export const LIKES_PER_CHARACTER = 50;
 export const MAX_CHARACTERS = 20;
 export const ROOM_ID = globalThis.PRAYLIVE_CONFIG?.roomId || 'chant-room-01';
@@ -15,5 +15,18 @@ export const seats = [
 ].map(([x,y,scale,zIndex,rotation]) => ({ x,y,scale,zIndex,rotation }));
 
 export function countFromLikes(likes) {
-  return Math.min(INITIAL_CHARACTERS + Math.floor(Math.max(0, likes) / LIKES_PER_CHARACTER), MAX_CHARACTERS);
+  return Math.min(Math.floor(Math.max(0, likes) / LIKES_PER_CHARACTER), MAX_CHARACTERS);
+}
+
+export function chooseRandomSeat(participants = [], random = Math.random) {
+  const occupied = new Set(participants.map(person => Number(person.seatIndex)));
+  const available = seats.map((_, index) => index).filter(index => !occupied.has(index));
+  if (!available.length) return null;
+  return available[Math.floor(random() * available.length)];
+}
+
+export function styleFromId(value = '') {
+  let hash = 7;
+  for (const char of String(value)) hash = (hash * 31 + char.charCodeAt(0)) >>> 0;
+  return hash % 8;
 }

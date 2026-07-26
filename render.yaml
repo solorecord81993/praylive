@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: praylive-tiktok-bridge
+    runtime: node
+    plan: free
+    buildCommand: npm ci --omit=dev
+    startCommand: npm run connector
+    autoDeploy: true
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+      - key: ROOM_ID
+        value: chant-room-01
+      - key: SUPABASE_URL
+        value: https://ocscshxqqtdzpoiwdksp.supabase.co
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: TIKTOK_USERNAME
+        sync: false
+      - key: CONTROL_PIN
+        sync: false
