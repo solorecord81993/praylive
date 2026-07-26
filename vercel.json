@@ -1,0 +1,1 @@
+{"cleanUrls":true,"trailingSlash":false,"rewrites":[{"source":"/live","destination":"/live/index.html"},{"source":"/control","destination":"/control/index.html"}]}

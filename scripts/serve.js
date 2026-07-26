@@ -1,0 +1,3 @@
+import { createServer } from 'node:http'; import { readFile, stat } from 'node:fs/promises'; import { extname, join } from 'node:path';
+const types={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json'};
+createServer(async(req,res)=>{try{let path=decodeURIComponent(req.url.split('?')[0]);if(path.endsWith('/'))path+='index.html';let file=join(process.cwd(),path);if((await stat(file)).isDirectory())file=join(file,'index.html');res.setHeader('content-type',types[extname(file)]||'application/octet-stream');res.end(await readFile(file));}catch{res.statusCode=404;res.end('Not found')}}).listen(5173,'0.0.0.0',()=>console.log('http://localhost:5173'));
