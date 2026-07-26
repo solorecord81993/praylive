@@ -8,21 +8,25 @@
   <link rel="stylesheet" href="/live/live.css">
 </head>
 <body>
-  <main id="stage" class="scene-temple camera-wide">
-    <div class="sky layer"></div>
-    <div class="sun"></div>
-    <div class="mountains layer"></div>
-    <div class="temple layer"><div class="roof"></div><div class="hall"></div></div>
-    <div class="floor layer"></div>
-    <div id="characters"></div>
-    <div id="effects"></div>
-    <div class="front layer"></div>
-    <div class="mist layer"></div>
+  <main id="stage" class="scene-temple camera-wide auto-camera">
+    <div id="world">
+      <div class="sky layer"></div>
+      <div class="sun"></div>
+      <div class="mountains layer"></div>
+      <div class="temple layer"><div class="roof"></div><div class="hall"></div></div>
+      <div class="floor layer"></div>
+      <div class="ceiling-rig"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="light-beams"><i></i><i></i><i></i><i></i></div>
+      <div class="altar"><span>☸</span></div>
+      <div id="characters"></div>
+      <div id="effects"></div>
+      <div class="front layer"></div>
+      <div class="mist layer"></div>
+    </div>
     <div class="live-header">
       <div class="brand"><span class="brand-mark">☸</span><span>พุทธ LIVE</span></div>
       <span class="live-badge"><i></i> LIVE</span>
     </div>
-    <div id="subtitle"></div>
   </main>
   <button id="unlock">
     <span class="sound-icon">▶</span>
