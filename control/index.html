@@ -41,24 +41,46 @@
       <div class="hero-copy">
         <span class="section-label">สถานะฉาก Live</span>
         <div class="count-line">
-          <strong><span id="charCount">1</span></strong>
+          <strong><span id="charCount">0</span></strong>
           <span>จาก 20 คน</span>
         </div>
-        <p>ผู้ร่วมสวดในฉากขณะนี้</p>
+        <p>ผู้ร่วมสวดที่กดครบ 50 ไลก์ต่อคน</p>
       </div>
       <div class="likes-panel">
         <div class="likes-row">
-          <span><b id="likes">0</b> Likes</span>
-          <span>เป้าหมายถัดไป <b id="next">50</b></span>
+          <span><b id="likes">0</b> ไลก์รวม</span>
+          <span>เกณฑ์ <b>50 ไลก์/คน</b></span>
         </div>
         <div class="progress" aria-label="ความคืบหน้าไลก์"><span id="progress"></span></div>
-        <button data-cmd="likes" data-value="10">♡ เพิ่ม 10 Likes</button>
+        <button data-cmd="likes" data-value="10">♡ ทดสอบเพิ่ม 10 ไลก์</button>
       </div>
     </section>
 
     <section>
       <div class="section-heading">
         <span class="step">01</span>
+        <div><h2>เชื่อม TikTok LIVE</h2><p>ใส่ชื่อบัญชีที่กำลังถ่ายทอดสด</p></div>
+      </div>
+      <div class="connector-card">
+        <div>
+          <span id="tiktokConnection" class="status-dot offline">● ยังไม่เชื่อม</span>
+          <small id="tiktokUser">รอ Render bridge</small>
+        </div>
+        <button id="disconnectTikTok" type="button">ตัดการเชื่อมต่อ</button>
+      </div>
+      <form id="tiktokForm" class="inline-form">
+        <label>
+          <span>ชื่อบัญชี TikTok</span>
+          <input id="tiktokUsername" autocomplete="off" placeholder="@username">
+        </label>
+        <button class="primary" type="submit">เชื่อม LIVE</button>
+      </form>
+      <p id="bridgeMessage" class="helper"></p>
+    </section>
+
+    <section>
+      <div class="section-heading">
+        <span class="step">02</span>
         <div><h2>เสียงและบทสวด</h2><p>อัปโหลดและควบคุมเสียงถ่ายทอด</p></div>
       </div>
       <label class="upload">
@@ -83,7 +105,7 @@
 
     <section>
       <div class="section-heading">
-        <span class="step">02</span>
+        <span class="step">03</span>
         <div><h2>บรรยากาศ</h2><p>เลือกฉากและการเคลื่อนกล้อง</p></div>
       </div>
       <h3>ฉาก</h3>
@@ -107,7 +129,7 @@
 
     <section>
       <div class="section-heading">
-        <span class="step">03</span>
+        <span class="step">04</span>
         <div><h2>ผู้ร่วมสวด</h2><p>จัดจำนวน ท่าทาง และของขวัญ</p></div>
       </div>
       <div class="two">

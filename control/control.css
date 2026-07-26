@@ -37,6 +37,15 @@ button, .upload {
 }
 
 button { padding: 11px 14px; cursor: pointer; }
+input:not([type="range"]):not([type="file"]) {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 1px solid #cfd9d1;
+  border-radius: 8px;
+  background: #fff;
+  color: #18332a;
+}
 
 header {
   background: #12372e;
@@ -133,6 +142,29 @@ section, .hero {
 .progress { height: 6px; margin: 10px 0 13px; overflow: hidden; border-radius: 99px; background: rgba(255,255,255,.13); }
 .progress span { display: block; width: 0; height: 100%; border-radius: inherit; background: #e1bd69; transition: width .3s ease; }
 .likes-panel button { width: 100%; border-color: #e1bd69; background: #e1bd69; color: #17362d; }
+
+.connector-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding: 12px;
+  border: 1px solid #dce4dd;
+  border-radius: 8px;
+  background: #f4f8f5;
+}
+.connector-card > div { min-width: 0; }
+.connector-card small { display: block; margin-top: 4px; overflow: hidden; color: #718077; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
+.status-dot { font-size: 11px; font-weight: 800; }
+.status-dot.online { color: #167744; }
+.status-dot.connecting, .status-dot.reconnecting { color: #a67816; }
+.status-dot.offline, .status-dot.error { color: #a33d33; }
+.connector-card button { flex: 0 0 auto; min-height: 38px; padding: 8px 10px; color: #91413a; }
+.inline-form { display: grid; gap: 9px; }
+.inline-form label span { display: block; margin-bottom: 6px; color: #58695f; font-size: 11px; font-weight: 700; }
+.inline-form .primary { border-color: #1d5947; background: #1d5947; color: #fff; }
+.helper { min-height: 16px; margin: 8px 0 0; color: #6f7d74; font-size: 10px; line-height: 1.45; }
 
 .section-heading { display: flex; align-items: flex-start; gap: 11px; margin-bottom: 16px; }
 .step {
